@@ -190,5 +190,16 @@ form.addEventListener('submit', (e) => {
     }
 });
 
+const checkbox = document.querySelectorAll('.activities-box input');
+
+for(let i = 0; i < checkbox.length; i++) {
+    checkbox[i].addEventListener('focus', (e) => {
+        checkbox[i].parentNode.classList.add('focus');
+    });
+    checkbox[i].addEventListener('blur', (e) => {
+        checkbox[i].parentNode.classList.remove('focus');
+    });
+}
+
 
 
