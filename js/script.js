@@ -190,6 +190,7 @@ form.addEventListener('submit', (e) => {
     }
 });
 
+// Accessibility
 const checkbox = document.querySelectorAll('.activities-box input');
 
 for(let i = 0; i < checkbox.length; i++) {
