@@ -31,8 +31,10 @@ design.addEventListener('change', (e) => {
 
         if(colorOptionsValue === dataTheme) {
             colorOptions[i].hidden = false;
+            colorOptions[i].setAttribute('selected', true);
         } else {
             colorOptions[i].hidden = true;
+            colorOptions[i].removeAttribute('selected');
         }
     }
 });
@@ -74,13 +76,13 @@ payment.addEventListener('change', (e) => {
         payPal.style.display = 'none';
         bitCoin.style.display = 'none';
     } else if(e.target.value === 'paypal') {
-        creditCard.style.display = 'none';
         payPal.style.display = 'block';
         bitCoin.style.display = 'none';
+        creditCard.style.display = 'none';
     } else if(e.target.value === 'bitcoin') {
+        bitCoin.style.display = 'block';
         creditCard.style.display = 'none';
         payPal.style.display = 'none';
-        bitCoin.style.display = 'block';
     }
 });
 
@@ -179,14 +181,17 @@ form.addEventListener('submit', (e) => {
     if(!validateActivities()) {
         e.preventDefault();
     }
-    if(!validateCard()) {
-        e.preventDefault();
-    }
-    if(!validateZip()) {
-        e.preventDefault();
-    }
-    if(!validateCvv()) {
-        e.preventDefault();
+    if(payment.value === 'credit-card'){
+        if(!validateCard()) {
+            e.preventDefault();
+        }
+    
+        if(!validateZip()) {
+            e.preventDefault();
+        }
+        if(!validateCvv()) {
+            e.preventDefault();
+        }
     }
 });
 
@@ -201,6 +206,3 @@ for(let i = 0; i < checkbox.length; i++) {
         checkbox[i].parentNode.classList.remove('focus');
     });
 }
-
-
-
